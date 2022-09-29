@@ -8,7 +8,7 @@
                 <ul class="m-0 mt-1 cc" type="none">
                     <h5 class="text-secondary">Company</h5>
                     <li>
-                        <a href="">About</a>
+                        <a href="/about">About</a>
                     </li>
                     <li>
                         <a href="">Blog</a>

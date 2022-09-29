@@ -14,14 +14,19 @@
         <div class="row">
          <div class="row col-5 m-3 border bg-white p-0">
             <button class="btn bg-white  btn-lg col-8"><span class="fa fa-download mr-2"></span>SAVE</button>
-            <button class="btn bg-white  btn-lg col-4"><span class="fa fa-angle-down"></span></button>
-         </div>
+            <button class="btn bg-white  btn-lg col-4" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><span class="fa fa-angle-down"></span></button>
+             
+          </div>
+         
          <div class="row col-5 m-3 border bg-white  p-0">
             <button class="btn bg-white  btn-lg col-12"><span class="fa fa-share mr-2"></span>EXPORT</button>
             <!-- 3 Dots Verticle button-->
             <!-- <button class="btn bg-white  btn-lg col-4 border-left"><span class="fa fa-ellipsis-v ml-1"></span></button> -->
          </div>
         </div>
+        <ul type="none" class="collapse bg-white border position-fixed" id="collapseExample">
+              <li class="bg-white p-3"><a href="" class="bg-white">Save</a></li>
+             </ul>
     </div>
 </div>
     <div class="mt-5">
@@ -64,7 +69,7 @@
     </div>
 </div>
 <div class="container" style="overflow-x: auto">
-    <table class="table  table-bordered text-secondary text-center" id="mydatatable" cellspacing="0" style="width:auto; min-width:100%;">
+    <table class="table  table-bordered text-secondary text-center rounded" id="mydatatable" cellspacing="0" style="width:auto; min-width:100%;">
       
         <thead>
             <tr>
@@ -217,11 +222,11 @@
                 <td>NASDAQ</td>
                 <td>Consumer Electronics</td>
                 <td>
-                  <div class="row">
-                    <div class="col-md-3" id="" onclick="change_color_width(this.innerHTML,'zs')">41</div>
+                <div class="row">
+                    <div class="col-md-3 len "   id="zs" onclick="change_color_width(this.innerHTML,this.id)">100</div>
                     <div class="col-md-9">
                        <div class="mt-2" style="width:100%; height:10px; border:1px solid grey; border-radius:15%;">
-                          <div class="zs" id="" style="width:50%; height:100%; background-color:orange;  border:1px solid orangered;"></div>
+                          <div class="zs" id="z2" style="height:100%;   border:1px solid orangered;"></div>
                       </div>
                     </div>
                   </div>
@@ -235,7 +240,7 @@
             <?php endif ?>
             <?php if($uri->getSegment(2)=='2'): ?>
                 <td><div class="row">
-                    <div class="col-md-3" id="z1" onclick="change_color_width(this.innerHTML,'zs')">38</div>
+                    <div class="col-md-3 len "   id="zs" onclick="change_color_width(this.innerHTML,this.id)">38</div>
                     <div class="col-md-9">
                        <div class="mt-2" style="width:100%; height:10px; border:1px solid grey; border-radius:15%;">
                           <div class="zs" id="z2" style="height:100%;   border:1px solid orangered;"></div>
@@ -243,7 +248,7 @@
                     </div>
                   </div></td>
                 <td><div class="row">
-                    <div class="col-md-3" id="z1" onclick="change_color_width(this.innerHTML,'vs')">29</div>
+                    <div class="col-md-3 len" id="vs" onclick="change_color_width(this.innerHTML,'vs')">29</div>
                     <div class="col-md-9">
                        <div class="mt-2" style="width:100%; height:10px; border:1px solid grey; border-radius:15%;">
                           <div class="vs" id="z2" style="height:100%;   border:1px solid orangered;"></div>
@@ -251,7 +256,7 @@
                     </div>
                   </div></td>
                 <td><div class="row">
-                    <div class="col-md-3" id="z1" onclick="change_color_width(this.innerHTML,'fis')">43</div>
+                    <div class="col-md-3 len" id="fis" onclick="change_color_width(this.innerHTML,'fis')">43</div>
                     <div class="col-md-9">
                        <div class="mt-2" style="width:100%; height:10px; border:1px solid grey; border-radius:15%;">
                           <div class="fis" id="z2" style="height:100%;   border:1px solid orangered;"></div>
@@ -259,7 +264,7 @@
                     </div>
                   </div></td>
                 <td><div class="row">
-                    <div class="col-md-3" id="z1" onclick="change_color_width(this.innerHTML,'fos')">22</div>
+                    <div class="col-md-3 len" id="fos" onclick="change_color_width(this.innerHTML,'fos')">22</div>
                     <div class="col-md-9">
                        <div class="mt-2" style="width:100%; height:10px; border:1px solid grey; border-radius:15%;">
                           <div class="fos" id="z2" style="height:100%;   border:1px solid orangered;"></div>
@@ -267,7 +272,7 @@
                     </div>
                   </div></td>
                 <td><div class="row">
-                    <div class="col-md-3" id="z1" onclick="change_color_width(this.innerHTML,'ps')">50</div>
+                    <div class="col-md-3 len" id="ps" onclick="change_color_width(this.innerHTML,'ps')">50</div>
                     <div class="col-md-9">
                        <div class="mt-2" style="width:100%; height:10px; border:1px solid grey; border-radius:15%;">
                           <div class="ps" id="z2" style="height:100%;   border:1px solid orangered;"></div>
@@ -275,7 +280,7 @@
                     </div>
                   </div></td>
                 <td><div class="row">
-                    <div class="col-md-3" id="z1" onclick="change_color_width(this.innerHTML,'ds')">60</div>
+                    <div class="col-md-3 len" id="ds" onclick="change_color_width(this.innerHTML,'ds')">60</div>
                     <div class="col-md-9">
                        <div class="mt-2" style="width:100%; height:10px; border:1px solid grey; border-radius:15%;">
                           <div class="ds" id="z2" style="height:100%;   border:1px solid orangered;"></div>
@@ -306,7 +311,7 @@
             <?php if($uri->getSegment(2)=='4'): ?>
                 <td nowrap>$150.77</td>
                 <td nowrap><div class="row">
-                    <div class="col-md-3" id="z1" onclick="change_color_width(this.innerHTML,'vs')">60</div>
+                    <div class="col-md-3 len" id="vs" onclick="change_color_width(this.innerHTML,'vs')">60</div>
                     <div class="col-md-9">
                        <div class="mt-2" style="width:100%; height:10px; border:1px solid grey; border-radius:15%;">
                           <div class="vs" id="z2" style="height:100%;   border:1px solid orangered;"></div>
@@ -329,7 +334,7 @@
             <?php endif ?>
             <?php if($uri->getSegment(2)=='5'): ?>
                 <td nowrap><div class="row">
-                    <div class="col-md-3" id="z1" onclick="change_color_width(this.innerHTML,'fins')">60</div>
+                    <div class="col-md-3 len" id="fins" onclick="change_color_width(this.innerHTML,'fins')">60</div>
                     <div class="col-md-9">
                        <div class="mt-2" style="width:100%; height:10px; border:1px solid grey; border-radius:15%;">
                           <div class="fins" id="z2" style="height:100%;   border:1px solid orangered;"></div>
@@ -350,7 +355,7 @@
             <?php endif ?>
             <?php if($uri->getSegment(2)=='6'): ?>
                 <td nowrap><div class="row">
-                    <div class="col-md-3" id="z1" onclick="change_color_width(this.innerHTML,'fores')">60</div>
+                    <div class="col-md-3 len" id="fores" onclick="change_color_width(this.innerHTML,'fores')">60</div>
                     <div class="col-md-9">
                        <div class="mt-2" style="width:100%; height:10px; border:1px solid grey; border-radius:15%;">
                           <div class="fores" id="z2" style="height:100%;   border:1px solid orangered;"></div>
@@ -371,7 +376,7 @@
             <?php endif ?>
             <?php if($uri->getSegment(2)=='7'): ?>
                 <td nowrap><div class="row">
-                    <div class="col-md-3" id="z1" onclick="change_color_width(this.innerHTML,'ps')">60</div>
+                    <div class="col-md-3 len" id="ps" onclick="change_color_width(this.innerHTML,'ps')">60</div>
                     <div class="col-md-9">
                        <div class="mt-2" style="width:100%; height:10px; border:1px solid grey; border-radius:15%;">
                           <div class="ps" id="z2" style="height:100%;   border:1px solid orangered;"></div>
@@ -392,7 +397,7 @@
             <?php endif ?>
             <?php if($uri->getSegment(2)=='8'): ?>
                 <td nowrap><div class="row">
-                    <div class="col-md-3" id="z1" onclick="change_color_width(this.innerHTML,'ds')">60</div>
+                    <div class="col-md-3 len" id="ds" onclick="change_color_width(this.innerHTML,'ds')">60</div>
                     <div class="col-md-9">
                        <div class="mt-2" style="width:100%; height:10px; border:1px solid grey; border-radius:15%;">
                           <div class="ds" id="z2" style="height:100%;   border:1px solid orangered;"></div>
@@ -518,6 +523,7 @@
   </div>
 </div>
             <script>
+              
                     function change_color_width(inner,cname)
                     {
                         elements =document.getElementsByClassName(cname);
@@ -525,19 +531,31 @@
                           elements[i].style.width=inner+"%";
                           if(inner<40){
                           elements[i].style.backgroundColor="red";
-                          }
+                          elements[i].style.borderColor="red"
+                        }
                           else  if(inner<70 && inner>=40){
                           elements[i].style.backgroundColor="orange";
-                          }
-                          if(inner<100 && inner>=70){
+                          elements[i].style.borderColor="orange"
+                        }
+                          if(inner<=100 && inner>=70){
                           elements[i].style.backgroundColor="green";
-                          }
+                          elements[i].style.borderColor="Green"
+                        }
                       }
                     }
+                    window.onload = function() {
+                          ele=document.getElementsByClassName('len');
+                          for (var i = 0; i < ele.length; i++) {
+                                      // ele[i].style.backgroundColor="red";
+                                      change_color_width(ele[i].innerHTML,ele[i].id);
+                                  }
+                      }
             </script>
             <style>
               .ul{
                 text-decoration: underline;
               }
+              table tbody td{
+                width:100px!important;             }
             </style>
 

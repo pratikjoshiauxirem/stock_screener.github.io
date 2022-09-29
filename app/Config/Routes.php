@@ -56,6 +56,8 @@ $routes->get('stock_ideas/(:any)', 'User1::stock_ideas');
 //pricing
 $routes->get('pricing', 'User1::pricing');
 $routes->get('pricing/(:any)', 'User1::pricing');
+//about
+$routes->get('about','user1::about');
 // $routes->get('screener-stock/:num', 'User1::screener_stock/$1');
 
     

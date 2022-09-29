@@ -46,7 +46,10 @@ class User1 extends BaseController
         echo view('pricing/pricing.php');
         echo view('templates/footer.php');
     }
-
+    public function about(){
+        echo view('templates/header.php');
+        echo view('index/about.php');
+    }
     
    
 }
