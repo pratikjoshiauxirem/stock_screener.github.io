@@ -10,9 +10,12 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-     <link rel="stylesheet" href="assets/css/style.css">
+     <link rel="stylesheet" href="/assets/css/style.css">
      <script src="https://kit.fontawesome.com/1565c9f77e.js" crossorigin="anonymous"></script>
-   
+     <link rel="stylesheet" type="text/css" href="/DataTables/datatables.css">
+ 
+ <script type="text/javascript" charset="utf8" src="/DataTables/datatables.js"></script>
+
 
     <title>Stock Screener</title>
     <style>nav li

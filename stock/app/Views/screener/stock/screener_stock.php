@@ -69,16 +69,17 @@
     </div>
 </div>
 <div class="container" style="overflow-x: auto">
-    <table class="table  table-bordered text-secondary text-center rounded" id="mydatatable" cellspacing="0" style="width:auto; min-width:100%;">
+
+    <table class="table table-bordered text-secondary text-center rounded" id="mydatatable" cellspacing="0" style="width:auto; min-width:100%;">
       
         <thead>
             <tr>
             <th nowrap>Ticker</th>
             <th nowrap>Company</th>
-             <?php if($uri->getSegment(2)=='1'): ?>
+             <?php if($uri->getSegment(2)=='1'||$uri->getSegment(2)==''): ?>
                 <th nowrap>Exchange</th>
                 <th nowrap>Industry</th>
-                <th nowrap width="115px;">Zen Score</th>
+                <th nowrap>Zen Score</th>
                 <th nowrap>Market cap</th>
                 <th nowrap>Price</th>
                 <th nowrap>1D%</th>
@@ -87,7 +88,7 @@
                 <th nowrap>D/E</th>
             <?php endif ?>
             <?php if($uri->getSegment(2)=='2'): ?>
-                <th nowrap  width="115px;">Zen Score</th>
+                <th nowrap width="115px">Zen Score</th>
                 <th nowrap>Valuation Score</th>
                 <th nowrap>Financial Score</th>
                 <th nowrap>Forecast Score</th>
@@ -214,91 +215,92 @@
                 <th nowrap>Beta</th>
             <?php endif ?>
         </thead>
-        <tbody>
+        <tbody class="text-left">
+          <?php foreach($result as $row){ ?>
             <tr>
-            <td><a href="">AAPL</a></td>
-            <td>AAPL INC</td>
-             <?php if($uri->getSegment(2)=='1'): ?>
-                <td>NASDAQ</td>
-                <td>Consumer Electronics</td>
-                <td>
-                <div class="row">
-                    <div class="col-md-3 len "   id="zs" onclick="change_color_width(this.innerHTML,this.id)">100</div>
-                    <div class="col-md-9">
+            <td nowrap><a href=""><?=  $row['ticker']; ?></a></td>
+            <td nowrap><?=  $row['company']; ?></td>
+             <?php if($uri->getSegment(2)=='1'||$uri->getSegment(2)==''): ?>
+                <td nowrap><?=  $row['exchange']; ?></td>
+                <td nowrap><?=  $row['industry']; ?></td>
+                <td nowrap >
+                  <div class="row p-0">
+                    <div class="col-md-3 len m-0" id="<?=  $row['zenscore']; ?>" onclick="change_color_width(this.innerHTML,this.id)"><?=  $row['zenscore']; ?></div>
+                    <div class="col-md-9 m-0">
                        <div class="mt-2" style="width:100%; height:10px; border:1px solid grey; border-radius:15%;">
-                          <div class="zs" id="z2" style="height:100%;   border:1px solid orangered;"></div>
+                          <div class="<?=  $row['zenscore']; ?>" id="z2" style="height:100%;   border:1px solid orangered;"></div>
                       </div>
                     </div>
                   </div>
                 </td>
-                <td>$2.42T	</td>
-                <td>$150.77	</td>
-                <td>0.23%	</td>
-                <td>$131.70B	</td>
-                <td>24.72x</td>
-                <td>4.79</td>
-            <?php endif ?>
+                <td nowrap><?=  $row['marketcap']; ?></td>
+                <td nowrap><?=  $row['price']; ?></td>
+                <td nowrap><?=  $row['D1']; ?></td>
+                <td nowrap><?=  $row['EBITDA']; ?></td>
+                <td nowrap><?=  $row['PE']; ?></td>
+                <td nowrap>4.79</td> 
+            <?php  endif; ?>
             <?php if($uri->getSegment(2)=='2'): ?>
-                <td><div class="row">
-                    <div class="col-md-3 len "   id="zs" onclick="change_color_width(this.innerHTML,this.id)">38</div>
+                <td nowrap><div class="row">
+                    <div class="col-md-3 len "   id="<?=  $row['zenscore']; ?>" onclick="change_color_width(this.innerHTML,this.id)"><?=  $row['zenscore']; ?></div>
                     <div class="col-md-9">
                        <div class="mt-2" style="width:100%; height:10px; border:1px solid grey; border-radius:15%;">
-                          <div class="zs" id="z2" style="height:100%;   border:1px solid orangered;"></div>
+                          <div class="<?=  $row['zenscore']; ?>" id="z2" style="height:100%;   border:1px solid orangered;"></div>
                       </div>
                     </div>
                   </div></td>
-                <td><div class="row">
-                    <div class="col-md-3 len" id="vs" onclick="change_color_width(this.innerHTML,'vs')">29</div>
+                <td nowrap><div class="row">
+                    <div class="col-md-3 len" id="<?=  $row['valuation_score']; ?>" onclick="change_color_width(this.innerHTML,'vs')"><?=  $row['valuation_score']; ?></div>
                     <div class="col-md-9">
                        <div class="mt-2" style="width:100%; height:10px; border:1px solid grey; border-radius:15%;">
-                          <div class="vs" id="z2" style="height:100%;   border:1px solid orangered;"></div>
+                          <div class="<?=  $row['valuation_score']; ?>" id="z2" style="height:100%;   border:1px solid orangered;"></div>
                       </div>
                     </div>
                   </div></td>
-                <td><div class="row">
-                    <div class="col-md-3 len" id="fis" onclick="change_color_width(this.innerHTML,'fis')">43</div>
+                <td nowrap><div class="row">
+                    <div class="col-md-3 len" id="<?=  $row['financials_score']; ?>1" onclick="change_color_width(this.innerHTML,'fis')"><?=  $row['financials_score']; ?></div>
                     <div class="col-md-9">
                        <div class="mt-2" style="width:100%; height:10px; border:1px solid grey; border-radius:15%;">
-                          <div class="fis" id="z2" style="height:100%;   border:1px solid orangered;"></div>
+                          <div class="<?=  $row['financials_score']; ?>" id="" style="height:100%;   border:1px solid orangered;"></div>
                       </div>
                     </div>
                   </div></td>
-                <td><div class="row">
-                    <div class="col-md-3 len" id="fos" onclick="change_color_width(this.innerHTML,'fos')">22</div>
+                <td nowrap><div class="row">
+                    <div class="col-md-3 len" id="<?=  $row['forecast_score']; ?>" onclick="change_color_width(this.innerHTML,'fos')"><?=  $row['forecast_score']; ?></div>
                     <div class="col-md-9">
                        <div class="mt-2" style="width:100%; height:10px; border:1px solid grey; border-radius:15%;">
-                          <div class="fos" id="z2" style="height:100%;   border:1px solid orangered;"></div>
+                          <div class="<?=  $row['forecast_score']; ?>" id="z2" style="height:100%;   border:1px solid orangered;"></div>
                       </div>
                     </div>
                   </div></td>
-                <td><div class="row">
-                    <div class="col-md-3 len" id="ps" onclick="change_color_width(this.innerHTML,'ps')">50</div>
+                <td nowrap><div class="row">
+                    <div class="col-md-3 len" id="<?=  $row['performance_score']; ?>" onclick="change_color_width(this.innerHTML,'ps')"><?=  $row['performance_score']; ?></div>
                     <div class="col-md-9">
                        <div class="mt-2" style="width:100%; height:10px; border:1px solid grey; border-radius:15%;">
-                          <div class="ps" id="z2" style="height:100%;   border:1px solid orangered;"></div>
+                          <div class="<?=  $row['performance_score']; ?>" id="z2" style="height:100%;   border:1px solid orangered;"></div>
                       </div>
                     </div>
                   </div></td>
-                <td><div class="row">
-                    <div class="col-md-3 len" id="ds" onclick="change_color_width(this.innerHTML,'ds')">60</div>
+                <td nowrap><div class="row">
+                    <div class="col-md-3 len" id="<?=  $row['dividence_score']; ?>" onclick="change_color_width(this.innerHTML,'ds')"><?=  $row['dividence_score']; ?></div>
                     <div class="col-md-9">
                        <div class="mt-2" style="width:100%; height:10px; border:1px solid grey; border-radius:15%;">
-                          <div class="ds" id="z2" style="height:100%;   border:1px solid orangered;"></div>
+                          <div class="<?=  $row['dividence_score']; ?>" id="z2" style="height:100%;   border:1px solid orangered;"></div>
                       </div>
                     </div>
                   </div></td>
-            <?php endif ?>
+            <?php endif; } ?>
             <?php if($uri->getSegment(2)=='3'): ?>
-                <td>$150.77	</td>
-                <td>0.23%</td>
-                <td>-2.40%	</td>
-                <td>7.85%</td>
-                <td>6.43%</td>
-                <td>14.14%</td>
-                <td>3.71%</td>
-                <td>174.27%</td>
-                <td>293.81%</td>
-                <td>534.66%</td>
+                <td nowrap>$150.77	</td>
+                <td nowrap>0.23%</td>
+                <td nowrap>-2.40%	</td>
+                <td nowrap>7.85%</td>
+                <td nowrap>6.43%</td>
+                <td nowrap>14.14%</td>
+                <td nowrap>3.71%</td>
+                <td nowrap>174.27%</td>
+                <td nowrap>293.81%</td>
+                <td nowrap>534.66%</td>
                 
                 <td nowrap>$182.94	</td>
                 <td nowrap>$129.04	</td>
@@ -445,6 +447,7 @@
             <?php endif ?>
             </tbody>
     </table>
+    
 </div>
 <div class="container-fluid p-5">
   <div class="row">
@@ -544,18 +547,35 @@
                       }
                     }
                     window.onload = function() {
+                     
                           ele=document.getElementsByClassName('len');
                           for (var i = 0; i < ele.length; i++) {
-                                      // ele[i].style.backgroundColor="red";
-                                      change_color_width(ele[i].innerHTML,ele[i].id);
+                            change_color_width(ele[i].innerHTML,ele[i].id);
                                   }
+                                  table = new DataTable('#mydatatable', {
+                                    paging: true,
+                                    select:true,
+                                    searching:true,
+                                    ordering:true
+                                  
+    
+                      });
+                                 
                       }
+
+                   
             </script>
             <style>
               .ul{
                 text-decoration: underline;
               }
-              table tbody td{
-                width:100px!important;             }
+              .table * {
+                padding: 0;
+                margin:0;
+              }
+              .table th,td{
+                
+                width: 150px !important;
+              }
             </style>
 
