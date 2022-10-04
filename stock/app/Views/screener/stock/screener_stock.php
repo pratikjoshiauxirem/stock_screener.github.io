@@ -19,7 +19,7 @@
           </div>
          
          <div class="row col-5 m-3 border bg-white  p-0">
-            <button class="btn bg-white  btn-lg col-12"><span class="fa fa-share mr-2"></span>EXPORT</button>
+            <button class="btn bg-white  btn-lg col-12" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1"><span class="fa fa-share mr-2"></span>EXPORT</button>
             <!-- 3 Dots Verticle button-->
             <!-- <button class="btn bg-white  btn-lg col-4 border-left"><span class="fa fa-ellipsis-v ml-1"></span></button> -->
          </div>
@@ -27,14 +27,28 @@
         <ul type="none" class="collapse bg-white border position-fixed" id="collapseExample">
               <li class="bg-white p-3"><a href="" class="bg-white">Save</a></li>
              </ul>
+       
     </div>
 </div>
+        <div class="collapse container p-3" id="collapseExample1">
+                <p class="w-75 p-1 rounded text-center" style="background-color:rgb(240,240,255);"><span class="fa fa-star " style="color:#6368C9;"></span>
+                <span class="mr-1 font-weight-bold " style="color:#6368C9;">Upgrade To Premium</span>
+              </p>
+              <h4>Take Your Data Further</h4>
+              <p class="pt-2 pb-1">Upgrade to Premium to export screeners and dive deeper into stocks that match your investment criteria
+              </p><center>
+              <a href="" class="text-decoration-none btn  p-3 rounded btn-lg mt-1 mb-1 font-weight-bold" style="background-color:#6368C9; color:white;">Try it for just $1</a>
+
+              <p class="text-small text-secondary text-center">$1 for 14 Days , then $150/year</p>
+              <a href="/pricing" class="text-center">See all premium plans here</a>
+              </center>
+        </div>
     <div class="mt-5">
     <?php 
       $uri = service('uri');
       ?>
     <ul class="nav list-group-horizontal flex-fill" style="overflow-x: auto">
-  <li class="nav-item <?=($uri->getSegment(2)=='1'?'active':null) ?>">
+  <li class="nav-item <?=($uri->getSegment(2)=='1'||$uri->getSegment(2)==''?'active':null) ?>">
     <a class="nav-link" href="/screener_stock/1">Oveview</a>
   </li>
   <li class="nav-item <?=($uri->getSegment(2)=='2'?'active':null) ?>">
@@ -70,7 +84,7 @@
 </div>
 <div class="container" style="overflow-x: auto">
 
-    <table class="table table-bordered text-secondary text-center rounded" id="mydatatable" cellspacing="0" style="width:auto; min-width:100%;">
+    <table class="table table-stripped text-secondary text-start rounded" id="mydatatable" cellspacing="0" style="width:auto; min-width:100%;">
       
         <thead>
             <tr>
@@ -215,7 +229,7 @@
                 <th nowrap>Beta</th>
             <?php endif ?>
         </thead>
-        <tbody class="text-left">
+        <tbody class="">
           <?php foreach($result as $row){ ?>
             <tr>
             <td nowrap><a href=""><?=  $row['ticker']; ?></a></td>
@@ -289,27 +303,27 @@
                       </div>
                     </div>
                   </div></td>
-            <?php endif; } ?>
-            <?php if($uri->getSegment(2)=='3'): ?>
-                <td nowrap>$150.77	</td>
-                <td nowrap>0.23%</td>
-                <td nowrap>-2.40%	</td>
-                <td nowrap>7.85%</td>
-                <td nowrap>6.43%</td>
-                <td nowrap>14.14%</td>
-                <td nowrap>3.71%</td>
-                <td nowrap>174.27%</td>
-                <td nowrap>293.81%</td>
-                <td nowrap>534.66%</td>
-                
-                <td nowrap>$182.94	</td>
-                <td nowrap>$129.04	</td>
-                <td nowrap>17.59%	</td>
-                <td nowrap>16.84%	</td>
-                <td nowrap>1.21</td>
-                <td nowrap>92,780,453	</td>
-                <td nowrap>-3.02%</td>
             <?php endif ?>
+            <?php if($uri->getSegment(2)=='3'): ?>
+                <td nowrap class="len1 " id="<?=  $row['dividence_score']; ?>"><?=  $row['price']; ?></td>
+                <td nowrap class="len1 " id="<?=  $row['D1']; ?>"><?=  $row['D1']; ?></td>
+                <td nowrap class="len1 <?= $row['w1']<0?  'text-danger' :  'text-success';?>" id="<?=  $row['w1']; ?>"><?=  $row['w1']; ?></td>
+                <td nowrap class="len1  <?= $row['m1']<0?  'text-danger' :  'text-success';?>" id="<?=  $row['m1']; ?>"><?=  $row['m1']; ?></td>
+                <td nowrap class="len1  <?= $row['m3']<0?  'text-danger' :  'text-success';?>" id="<?=  $row['m3']; ?>"><?=  $row['m3']; ?></td>
+                <td nowrap class="len1  <?= $row['m6']<0?  'text-danger' :  'text-success';?>" id="<?=  $row['m6']; ?>"><?=  $row['m6']; ?></td>
+                <td nowrap class="len1  <?= $row['y1']<0?  'text-danger' :  'text-success';?>" id="<?=  $row['y1']; ?>"><?=  $row['y1']; ?></td>
+                <td nowrap class="len1  <?= $row['y3']<0?  'text-danger' :  'text-success';?>" id="<?=  $row['y3']; ?>"><?=  $row['y3']; ?></td>
+                <td nowrap class="len1  <?= $row['y5']<0?  'text-danger' :  'text-success';?>" id="<?=  $row['y5']; ?>"><?=  $row['y5']; ?></td>
+                <td nowrap class="len1  <?= $row['y10']<0?  'text-danger' :  'text-success';?>" id="<?=  $row['y10']; ?>"><?=  $row['y10']; ?></td>
+                
+                <td nowrap class="len1  <?= $row['H52']<0?  'text-danger' :  'text-success';?>" id="<?=  $row['H52']; ?>"><?=  $row['H52']; ?></td>
+                <td nowrap class="len1  <?= $row['L52']<0?  'text-danger' :  'text-success';?>" id="<?=  $row['L52']; ?>"><?=  $row['L52']; ?></td>
+                <td nowrap class="len1  <?= $row['H52P']<0?  'text-danger' :  'text-success';?>" id="<?=  $row['H52P']; ?>"><?=  $row['H52P']; ?></td>
+                <td nowrap class="len1  <?= $row['L52P']<0?  'text-danger' :  'text-success';?>" id="<?=  $row['L52P']; ?>"><?=  $row['L52P']; ?></td>
+                <td nowrap class="len1  <?= $row['beta']<0?  'text-danger' :  'text-success';?>" id="<?=  $row['beta']; ?>"><?=  $row['beta']; ?></td>
+                <td nowrap class="len1 <?= $row['vol']<0?  'text-danger' :  'text-success';?>" id="<?=  $row['vol']; ?>"><?=  $row['vol']; ?></td>
+                <td nowrap class="len1 <?= $row['vol1d']<0?  'text-danger' :  'text-success';?>" id="<?=  $row['vol1d']; ?>"><?=  $row['vol1d']; ?></td>
+            <?php endif ; } ?>
             <?php if($uri->getSegment(2)=='4'): ?>
                 <td nowrap>$150.77</td>
                 <td nowrap><div class="row">
@@ -546,20 +560,28 @@
                         }
                       }
                     }
+                   
                     window.onload = function() {
                      
-                          ele=document.getElementsByClassName('len');
-                          for (var i = 0; i < ele.length; i++) {
-                            change_color_width(ele[i].innerHTML,ele[i].id);
-                                  }
+                          
                                   table = new DataTable('#mydatatable', {
                                     paging: true,
                                     select:true,
                                     searching:true,
                                     ordering:true
-                                  
     
                       });
+                      ele=document.getElementsByClassName('len');
+                          for (var i = 0; i < ele.length; i++) {
+                          change_color_width(ele[i].innerHTML,ele[i].id);
+                          doc=ele[i];
+                          doc.onload=function(){
+                            alert('hii');
+                            
+                          }
+                                  }
+                                
+                                
                                  
                       }
 
@@ -577,5 +599,17 @@
                 
                 width: 150px !important;
               }
+              #collapseExample1{
+                width: 300px;
+                position: absolute;
+                justify-content: center;
+                top: 50%;
+                left: 50%;
+                transform:translate(-50%,-50%);
+                background-color: white;
+                border-radius: 15px;
+                
+              }
+              
             </style>
 

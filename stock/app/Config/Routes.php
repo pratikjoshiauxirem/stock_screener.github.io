@@ -58,6 +58,8 @@ $routes->get('pricing', 'User1::pricing');
 $routes->get('pricing/(:any)', 'User1::pricing');
 //about
 $routes->get('about','user1::about');
+//Filters
+$routes->get('addf','user1::addf');
 // $routes->get('screener-stock/:num', 'User1::screener_stock/$1');
 
     
