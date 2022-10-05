@@ -13,15 +13,21 @@ class User1 extends BaseController
     }
     public function watchlist()
     {
+        $model= new ProductModel ();
+        $data=[
+            'result' => $model->paginate(50),
+            'pager' => $model->pager,
+        ];
         echo view('templates/header.php');
-        echo view('watchlist/watchlist.php');
+        echo view('watchlist/watchlist.php',$data);
         echo view('templates/footer.php');
     }
     public function screener_stock()
     {
         $model= new ProductModel ();
         $data=[
-            'result' => $model->paginate(1600),
+            'result' => $model->paginate(50),
+            'pager' => $model->pager,
         ];
    
 

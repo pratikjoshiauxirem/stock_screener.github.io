@@ -9,8 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-     <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+       
+    <link rel="stylesheet" href="/assets/css/style.css">
      <script src="https://kit.fontawesome.com/1565c9f77e.js" crossorigin="anonymous"></script>
      <link rel="stylesheet" type="text/css" href="/DataTables/datatables.css">
  
@@ -61,6 +63,12 @@
   border:none !important;
   
 }
+nav{
+  position: sticky !important;
+  top:0;
+  background-color: white;
+  z-index: 1;
+}
 </style>
   </head>
   <body>
@@ -95,7 +103,7 @@
           <a class="dropdown-item" href="/watchlist">My Watchlist</a>
        
         </div>
-      </li>
+      </l i>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Screener <span class="fa fa-angle-down"></span>   

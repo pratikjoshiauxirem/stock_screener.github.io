@@ -5,8 +5,12 @@
          analysis to help you understand a stock's fundamentals within minutes.</h5>
     <div class="container w-50">
         <div class="row br-25 p-5">
-            <input type="text" class="form-control col-md-9 col-9 col-xs-12 col-sm-12 p-3 text-lg" placeholder="Search for the company">
-            <input type="submit" value="Research" class="btn btn-lg text-secondary">
+            <div class="col-md-9 col-9 col-xs-12 col-sm-12">
+            <input type="text" class="form-control  p-3 text-lg" placeholder="Search for the company">
+            </div>
+            <div class="col-md-3 col-3 col-xs-12 col-sm-12 btn">
+            <input type="submit" value="Research" class=" btn-lg text-secondary" style="background-color:transparent;border:none;">
+            </div>
         </div>
         <div class="bgimg">
              <div class="">

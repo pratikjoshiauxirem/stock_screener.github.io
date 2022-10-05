@@ -8,7 +8,7 @@
         <p class="lead pt-3">
         Use our free stock screener to find investing opportunities based on your personalized filters. Contact us with feature suggestions, bug reports, and questions.
         </p>
-        <button class="btn btn-primary mt-5 btn-lg" ><span class="fa fa-plus mr-3" id="af"></span>Add Filters</button>
+        <a href="/addf" class="btn btn-primary mt-5 btn-lg" ><span class="fa fa-plus mr-3" id="af"></span>Add Filters</a>
     </div>
     <div class="col-5 col-md-5 col-sm-12">
         <div class="row">
@@ -84,12 +84,12 @@
 </div>
 <div class="container" style="overflow-x: auto">
 
-    <table class="table table-stripped text-secondary text-start rounded" id="mydatatable" cellspacing="0" style="width:auto; min-width:100%;">
+    <table class="table table-bordered text-secondary text-start rounded w-75" id="mydatatable" cellspacing="0" style="width:auto; min-width:100%;">
       
         <thead>
             <tr>
             <th nowrap>Ticker</th>
-            <th nowrap>Company</th>
+            <th >Company</th>
              <?php if($uri->getSegment(2)=='1'||$uri->getSegment(2)==''): ?>
                 <th nowrap>Exchange</th>
                 <th nowrap>Industry</th>
@@ -232,8 +232,8 @@
         <tbody class="">
           <?php foreach($result as $row){ ?>
             <tr>
-            <td nowrap><a href=""><?=  $row['ticker']; ?></a></td>
-            <td nowrap><?=  $row['company']; ?></td>
+            <td nowrap><a href="screener_stock/<?=  $row['ticker']; ?>"><?=  $row['ticker']; ?></a></td>
+            <td ><?=  $row['company']; ?></td>
              <?php if($uri->getSegment(2)=='1'||$uri->getSegment(2)==''): ?>
                 <td nowrap><?=  $row['exchange']; ?></td>
                 <td nowrap><?=  $row['industry']; ?></td>
@@ -323,31 +323,31 @@
                 <td nowrap class="len1  <?= $row['beta']<0?  'text-danger' :  'text-success';?>" id="<?=  $row['beta']; ?>"><?=  $row['beta']; ?></td>
                 <td nowrap class="len1 <?= $row['vol']<0?  'text-danger' :  'text-success';?>" id="<?=  $row['vol']; ?>"><?=  $row['vol']; ?></td>
                 <td nowrap class="len1 <?= $row['vol1d']<0?  'text-danger' :  'text-success';?>" id="<?=  $row['vol1d']; ?>"><?=  $row['vol1d']; ?></td>
-            <?php endif ; } ?>
+            <?php endif ?>
             <?php if($uri->getSegment(2)=='4'): ?>
-                <td nowrap>$150.77</td>
+                <td nowrap><?= $row['price'] ?></td>
                 <td nowrap><div class="row">
-                    <div class="col-md-3 len" id="vs" onclick="change_color_width(this.innerHTML,'vs')">60</div>
+                    <div class="col-md-3 len" id="<?= $row['valuation_score'] ?>" onclick="change_color_width(this.innerHTML,'<?= $row['valuation_score'] ?>')"><?= $row['valuation_score'] ?></div>
                     <div class="col-md-9">
                        <div class="mt-2" style="width:100%; height:10px; border:1px solid grey; border-radius:15%;">
-                          <div class="vs" id="z2" style="height:100%;   border:1px solid orangered;"></div>
+                          <div class="<?= $row['valuation_score'] ?>" id="z2" style="height:100%;   border:1px solid orangered;"></div>
                       </div>
                     </div>
                   </div></td>
-                <td nowrap>$128.96</td>
-                <td nowrap>16.91%</td>
-                <td nowrap>24.72x</td>
-                <td nowrap>24.72x</td>
-                <td nowrap>6.29x</td>
-                <td nowrap>41.70x</td>
-                <td nowrap>8.51x</td>
-                <td nowrap>$107.58B</td>
-                <td nowrap>4.41%</td>
-                <td nowrap>$58.11B</td>
-                <td nowrap>3.60</td>
-                <td nowrap>$2.52T</td>
-                <td nowrap>19.10</td>
-            <?php endif ?>
+                <td nowrap><?= $row['gfv'] ?></td>
+                <td nowrap <?= $row['gfvp']<0?  'text-danger' :  'text-success';?>><?= $row['gfvp'] ?></td>
+                <td nowrap><?= $row['PE'] ?></td>
+                <td nowrap><?= $row['fpe'] ?></td>
+                <td nowrap><?= $row['ps'] ?></td>
+                <td nowrap><?= $row['pb'] ?></td>
+                <td nowrap><?= $row['peg'] ?></td>
+                <td nowrap><?= $row['fcf'] ?></td>
+                <td nowrap><?= $row['fcfy'] ?></td>
+                <td nowrap><?= $row['bookvalue'] ?></td>
+                <td nowrap><?= $row['bvps'] ?></td>
+                <td nowrap><?= $row['ev'] ?></td>
+                <td nowrap><?= $row['EBITDA'] ?></td>
+            <?php endif ; } ?>
             <?php if($uri->getSegment(2)=='5'): ?>
                 <td nowrap><div class="row">
                     <div class="col-md-3 len" id="fins" onclick="change_color_width(this.innerHTML,'fins')">60</div>
@@ -461,7 +461,13 @@
             <?php endif ?>
             </tbody>
     </table>
-    
+    <div class="container">
+      <div class="row">
+        <div class="col-6 col-sm-12 col-xs-12">
+        <?= $pager->links() ?>
+        </div>
+      </div>
+    </div>
 </div>
 <div class="container-fluid p-5">
   <div class="row">
@@ -565,7 +571,7 @@
                      
                           
                                   table = new DataTable('#mydatatable', {
-                                    paging: true,
+                                    paging: false,
                                     select:true,
                                     searching:true,
                                     ordering:true
@@ -579,7 +585,7 @@
                             alert('hii');
                             
                           }
-                                  }
+                                  } 
                                 
                                 
                                  
@@ -610,6 +616,10 @@
                 border-radius: 15px;
                 
               }
-              
+              .pagination li{
+                background-color: white;
+                
+               
+              }
             </style>
 

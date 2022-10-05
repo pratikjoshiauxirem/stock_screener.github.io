@@ -1,5 +1,5 @@
 <div class="container-fluid pt-3 bg">
-    <div class="container-fluid">
+    <div class="container-fluid" id="g123">
         <div class="row">
             <div class="col-8 col-md-8 col-sm-12 col-xs-12 pt-3 pb-5 pl-5 border">
                 <p class="m-4 text-secondary">Watchlists > Mywatchlist</p>
@@ -9,16 +9,20 @@
                 <div class="container-fluid">
                 <div class="row">
                     <div class="col-6 col-md-6 col-sm-12 col-xs-12 p-0">
-                        <a href="#"class="btn bg-white"><span class="fa fa-pen mr-3"></span>Edit Watchlist</a>
+                        <a href=""type="button" class=" btn bg-white" data-toggle="collapse" data-target="#editwatchlist"><span class="fa fa-pen mr-3"></span>Edit Watchlist</a>
+                        <div class="position-absolute p-3 border collapse" id="editwatchlist" style="background-color:white;">
+                            <a href="" style="text-decoration:none; padding-top:15px;">Edit Watchlist Name</a>
+                            <a href="" style="text-decoration:none; padding-top:15px;">Remove Watchlist </a>
+                        </div>
                     </div>
                     <div class="col-6 col-md-6 col-sm-12 col-xs-12 p-0">
-                        <a href="#" class="btn bg-white"><span class="fa fa-plus mr-3"></span>New Watchlist</a>
+                        <a class="btn bg-white" onclick="newwatchlist()"><span class="fa fa-plus mr-3"></span>New Watchlist</a>
                     </div>
                     <div class="col-6 col-md-6 col-sm-12 col-xs-12 p-0 mt-3">
                         <!-- <a href="#"class="btn bg-white"><span class="fa fa-pen mr-3"></span>Edit Watchlist</a> -->
                     </div>
                     <div class="col-6 col-md-6 col-sm-12 col-xs-12 p-0 mt-3">
-                        <a href="#" class="btn ">Watchlist Email:<span style="color:blue;">off</span></a>
+                        <span class="">Watchlist Email:<span id="onoff" style="color:blue;" onclick="onoff()">off</span></span>
                     </div>
                 </div>
                 </div>
@@ -106,8 +110,17 @@
                                  <h4 class="text-center">No Stocks</h4>
                                  <p>You don't have any stocks added to your watchlist. Add some stocks and they will appear here.</p>
                                  <div class="row p-4">
-                                    <input type="text" placeholder="Add a Stock" class="form-control col-md-8 col-8 col-sm-12 col-xs-12 ml-2" name="" id="">
-                                    <input type="submit" class="btn bg col-3 col-md-3 col-sm-6 col-xs-6 ml-3" value="Add" name="sub">
+                                 <div class="dropdown col-md-8 col-8 ">
+                                    <input type="text" class="w-100" onclick="myFunction()"  value="Search"id="myInput" onkeyup="filterFunction()">
+                                    <div id="myDropdown" class="dropdown-content">
+                                          <?php 
+                                            foreach($result as $row){
+                                          ?>
+                                          <a class="text-start"><?=$row['ticker'];?></a>
+                                          <?php  } ?>
+                                    </div>
+                                    </div>                   
+                     <input type="submit" class="btn bg col-3 col-md-3 col-sm-6 col-xs-6 ml-3" value="Add" name="sub">
                                  </div>
                     </div>
                 </div>
@@ -160,6 +173,26 @@
     </div>
     
 </div>
+<div class="container-fluid" id="g1234">
+    <a href="" onclick="newwatchlist()"> <span class="fa fa-times close position-absolute end-0 top-0 m-2 p-3 bg-white rounded-circle text-danger" ></span></a>
+            <div class="p-3 bg-white w-25 m-auto rounded" id="g12345" style="height:100%;">
+                    <div>
+                    <a href="" onclick="newwatchlist()"> <span class="fa fa-times p-2 bg-white border rounded-circle" text-left></span></a>
+                        <span class="text-right " style="font-size:20px !important;">Create New Watchlist</span>
+                    </div>
+                    <hr>
+                    <div>
+                        <input type="text" class="form-control " style="background-color:rgba(0,0,0,0.1);font-weight:bold;" placeholder="Your List Name">
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input btn-lg btn position-absolute" style="left:50px;" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                       <span class="text-end position-absolute start-50"> Daily Watchlist Email</span>
+                    </div>
+                    <div class=" mt-5 ">
+                        <a href="" class="btn btn-primary w-100">Create</a>
+                    </div>
+            </div>
+</div>
 <style>
     .bg{
         background-color: rgb(230, 230, 230);
@@ -182,8 +215,87 @@
     #wfhome{
         border-bottom: 3px solid black;
     }
+    #g1234{
+        width:98.6vw;
+        height: 100vh;
+        padding: 10%;
+        background-color: rgba(0,0,0,0.8);
+        position: absolute;
+        top:0;
+        z-index: 1;
+        display: none;
+    }
+    body{
+        
+    }
+    .dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #3e8e41;
+}
+
+#myInput {
+  box-sizing: border-box;
+  background-image: url('searchicon.png');
+  background-position: 14px 12px;
+  background-repeat: no-repeat;
+  font-size: 16px;
+  padding: 14px 20px 12px 45px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+
+#myInput:focus {outline: 3px solid #ddd;}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f6f6f6;
+  min-width: 94%;
+  overflow: auto;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
 </style>
 <script>
+    function onoff(){
+            if(document.getElementById('onoff').innerHTML=="off"){
+                document.getElementById('onoff').innerHTML="on";
+            }else{
+                document.getElementById('onoff').innerHTML="off";
+            }
+    }
+    function newwatchlist(){
+        if(document.getElementById('g1234').style.display=="block"){
+            document.getElementById('g1234').style.display="none";
+        }
+        else{
+            document.getElementById('g1234').style.display="block";
+        }
+    }
     function view(clicked,show){
         wfne=document.getElementsByClassName('wfne');
         for (var i = 0; i < wfne.length; i++) {
@@ -193,4 +305,23 @@
         document.getElementById(clicked).style.borderBottom = "3px solid black";
         //alert(show);
     }
+    function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+function filterFunction() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  div = document.getElementById("myDropdown");
+  a = div.getElementsByTagName("a");
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}
 </script>
